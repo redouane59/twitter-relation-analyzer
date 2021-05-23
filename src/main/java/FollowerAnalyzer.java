@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.redouane59.RelationType;
 import com.github.redouane59.twitter.TwitterClient;
 import com.github.redouane59.twitter.dto.user.User;
@@ -7,79 +6,49 @@ import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.httpclient.okhttp.OkHttpHttpClient;
 import com.github.scribejava.httpclient.okhttp.OkHttpHttpClientConfig;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 import lombok.Data;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import model.CacheInterceptor;
+import model.DataImporter;
+import model.DirectionEnum;
+import model.GroupEnum;
+import model.InfluentUser;
 import okhttp3.Cache;
-import okhttp3.CacheControl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient.Builder;
-import okhttp3.Response;
 
 @Data
+@Slf4j
 public class FollowerAnalyzer {
 
-  private static final Logger             LOGGER         = Logger.getLogger(FollowerAnalyzer.class.getName());
-  private              TwitterClient      twitterClient;
-  private              List<InfluentUser> influentUsers;
-  private final        int                FOLLOWING_MARK = 2;
-  private final        int                FOLLOWER_MARK  = 1;
-  private final        int                FRIEND_MARK    = 3;
+  private       TwitterClient      twitterClient;
+  private       List<InfluentUser> influentUsers;
+  private final int                FOLLOWING_MARK = 2;
+  private final int                FOLLOWER_MARK  = 1;
+  private final int                FRIEND_MARK    = 3;
 
   @SneakyThrows
   public FollowerAnalyzer() {
     TwitterCredentials
         twitterCredentials =
-        TwitterClient.OBJECT_MAPPER.readValue(new File("C:/Users/Perso/Documents/GitHub/twitter-credentials.json"),
+        TwitterClient.OBJECT_MAPPER.readValue(new File("C:/Users/Perso/Documents/GitHub/twitter-credentials - RBA.json"),
                                               TwitterCredentials.class);
     long   cacheSize = 1024L * 1024 * 1024; // 1go
     String path      = "../okhttpCache";
     File   file      = new File(path);
 
     Builder httpBuilder = new Builder()
-        .addNetworkInterceptor(this.provideCacheInterceptor())
+        .addNetworkInterceptor(new CacheInterceptor())
         .cache(new Cache(file, cacheSize));
     OkHttpHttpClient okHttpClient = new OkHttpHttpClient(new OkHttpHttpClientConfig(httpBuilder));
     ServiceBuilder builder = new ServiceBuilder(twitterCredentials.getApiKey())
         .httpClient(okHttpClient);
 
     this.twitterClient = new TwitterClient(twitterCredentials, builder);
-
-    this.influentUsers = loadInfluentUsers();
-  }
-
-  private Interceptor provideCacheInterceptor() {
-    return new Interceptor() {
-      @Override
-      public Response intercept(Chain chain) throws IOException {
-        Response response = chain.proceed(chain.request());
-        CacheControl cacheControl = new CacheControl.Builder()
-            .maxAge(30, TimeUnit.DAYS)
-            .build();
-        return response.newBuilder()
-                       .header("Cache-Control", cacheControl.toString())
-                       .build();
-      }
-    };
-  }
-
-  private List<InfluentUser> loadInfluentUsers() {
-    String       fileName = "influents_users.json";
-    File         file     = new File("src/main/resources/" + fileName);
-    ObjectMapper mapper   = new ObjectMapper();
-    if (file.exists()) {
-      try {
-        return List.of(mapper.readValue(file, InfluentUser[].class));
-      } catch (Exception e) {
-        LOGGER.severe(" KO!! " + e.getMessage());
-      }
-    }
-    return null;
+    this.influentUsers = DataImporter.importInfluentUser();
   }
 
   // give a map with each Group Enum, the number of influent users by relation type
@@ -101,10 +70,11 @@ public class FollowerAnalyzer {
   }
 
   // gives a mark for each group enum based on relation
-  public Map<GroupEnum, Integer> getRelationMarkByGroup(Map<GroupEnum, Map<RelationType, Integer>> relationMap) {
-    Map<GroupEnum, Integer> result = new HashMap<>();
+  public Map<DirectionEnum, Integer> getRelationMarkByGroup(Map<GroupEnum, Map<RelationType, Integer>> relationMap) {
+    Map<DirectionEnum, Integer> result = new HashMap<>();
     for (GroupEnum group : relationMap.keySet()) {
-      int mark = 0;
+      DirectionEnum direction = group.getDirection();
+      int           mark      = 0;
       for (RelationType relationType : relationMap.get(group).keySet()) {
         if (relationType == RelationType.FOLLOWING) {
           mark += FOLLOWING_MARK;
@@ -114,7 +84,10 @@ public class FollowerAnalyzer {
           mark += FRIEND_MARK;
         }
       }
-      result.put(group, mark);
+      result.put(direction, result.getOrDefault(direction, 0) + mark);
+    }
+    for (DirectionEnum element : result.keySet()) {
+      LOGGER.debug(element + " -> " + result.get(element));
     }
     return result;
   }
@@ -122,22 +95,22 @@ public class FollowerAnalyzer {
   public int getUserDirection(String userName) {
     long start = System.currentTimeMillis();
 
-    System.out.println("*relation map*");
+    LOGGER.debug("*relation map*");
     Map<GroupEnum, Map<RelationType, Integer>> relationMap = getRelationMap(userName);
-    System.out.println((System.currentTimeMillis() - start) / 1000F + " s");
-    System.out.println("*relation marks*");
-    Map<GroupEnum, Integer> relationMarks = getRelationMarkByGroup(relationMap);
-    System.out.println((System.currentTimeMillis() - start) / 1000F + " s");
-    System.out.println("*direction*");
+    LOGGER.debug((System.currentTimeMillis() - start) / 1000F + " s");
+    LOGGER.debug("*relation marks*");
+    Map<DirectionEnum, Integer> relationMarks = getRelationMarkByGroup(relationMap);
+    LOGGER.debug((System.currentTimeMillis() - start) / 1000F + " s");
+    LOGGER.debug("*direction*");
     int mark = this.getUserDirection(relationMarks);
-    System.out.println((System.currentTimeMillis() - start) / 1000F + " s");
+    LOGGER.debug((System.currentTimeMillis() - start) / 1000F + " s");
     return mark;
   }
 
-  public int getUserDirection(Map<GroupEnum, Integer> relationMarks) {
+  public int getUserDirection(Map<DirectionEnum, Integer> relationMarks) {
     int result = 0;
-    for (GroupEnum groupEnum : relationMarks.keySet()) {
-      result += (groupEnum.getDirection().getValue() * relationMarks.getOrDefault(groupEnum, 0));
+    for (DirectionEnum direction : relationMarks.keySet()) {
+      result += (direction.getValue() * relationMarks.getOrDefault(direction, 0));
     }
     return result;
   }

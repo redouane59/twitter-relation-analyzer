@@ -1,3 +1,5 @@
+package model;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -7,11 +9,12 @@ import com.github.redouane59.twitter.dto.user.UserV2;
 import java.io.IOException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
 @NoArgsConstructor
 @JsonDeserialize(using = InfluentUser.InfluentUserDeserializer.class)
-
+@Slf4j
 public class InfluentUser extends UserV2 {
 
   private GroupEnum     group;
@@ -42,10 +45,14 @@ public class InfluentUser extends UserV2 {
       GroupEnum group = GroupEnum.UNKNOWN;
       if (node.has("group")) {
         group = GroupEnum.findByAbbr(node.get("group").asText());
+      } else {
+        LOGGER.debug(name + " group KO");
       }
       DirectionEnum direction = DirectionEnum.UNKNOWN;
       if (node.has("direction")) {
         DirectionEnum.findByAbbr(node.get("direction").asText());
+      } else {
+        LOGGER.debug(name + " direction KO");
       }
       return new InfluentUser(name, id, group, direction);
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import model.InfluentUser;
 import org.junit.jupiter.api.Test;
 
 public class InfluentUserDeserializerTest {
