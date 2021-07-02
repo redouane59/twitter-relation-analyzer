@@ -4,24 +4,25 @@ import lombok.Getter;
 
 public enum GroupEnum {
 
-  FI("red", DirectionEnum.EX_GAUCHE),
-  PCF("red", DirectionEnum.EX_GAUCHE),
-  PS("HotPink", DirectionEnum.GAUCHE),
-  EELV("HotPink", DirectionEnum.GAUCHE),
-  LREM("Gold", DirectionEnum.CENTRE),
-  LR("DodgerBlue", DirectionEnum.DROITE),
-  RN("darkblue", DirectionEnum.EX_DROITE),
-  JOURNALISTE("darkgreen", DirectionEnum.UNKNOWN),
-  UNKNOWN("black", DirectionEnum.UNKNOWN);
+  FI("red", OrientationEnum.EX_GAUCHE),
+  PCF("red", OrientationEnum.EX_GAUCHE),
+  PS("HotPink", OrientationEnum.GAUCHE),
+  EELV("HotPink", OrientationEnum.GAUCHE),
+  LREM("Gold", OrientationEnum.CENTRE),
+  LR("DodgerBlue", OrientationEnum.DROITE),
+  RN("darkblue", OrientationEnum.EX_DROITE),
+  PR("darkblue", OrientationEnum.EX_DROITE),
+  JOURNALISTE("darkgreen", OrientationEnum.UNKNOWN),
+  UNKNOWN("black", OrientationEnum.UNKNOWN);
 
   @Getter
-  private String        color;
+  private String          color;
   @Getter
-  private DirectionEnum direction;
+  private OrientationEnum orientation;
 
-  GroupEnum(String color, DirectionEnum direction) {
-    this.color     = color;
-    this.direction = direction;
+  GroupEnum(String color, OrientationEnum orientation) {
+    this.color       = color;
+    this.orientation = orientation;
   }
 
   public static GroupEnum findByAbbr(String abbr) {

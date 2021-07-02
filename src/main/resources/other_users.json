@@ -1,0 +1,296 @@
+[
+  {
+    "name": "T_Bouhafs",
+    "id": "835174698623336448",
+    "group": "JOURNALISTE",
+    "orientation": "EX_GAUCHE"
+  },
+  {
+    "name": "ZemmourEric",
+    "id": "1183418538285027329",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "RokhayaDiallo",
+    "id": "46375782",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "id": "531383314",
+    "name": "_MarwanMuhammad",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "id": "700044567",
+    "name": "FeizaBM",
+    "group": "JOURNALISTE",
+    "orientation": "UNKNOWN"
+  },
+  {
+    "name": "s_assbague",
+    "id": "1496216082",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "RemyBuisine",
+    "id": "1643934410",
+    "group": "JOURNALISTE",
+    "orientation": "EX_GAUCHE"
+  },
+  {
+    "name": "fabricearfi",
+    "id": "89784381",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "davidperrotin",
+    "id": "233532563",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "carolinedehaas",
+    "id": null,
+    "group": "JOURNALISTE",
+    "orientation": "UNKNOWN"
+  },
+  {
+    "name": "anatolium",
+    "id": "170404151",
+    "group": "JOURNALISTE",
+    "orientation": "EX_GAUCHE"
+  },
+  {
+    "name": "N_Henin",
+    "id": "295692501",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "IdrissSihamedi",
+    "id": "3065659479",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "RomainCaillet",
+    "id": "1628028361",
+    "group": "JOURNALISTE",
+    "orientation": "UNKNOWN"
+  },
+  {
+    "name": "clemovitch",
+    "id": "2574472352",
+    "group": "JOURNALISTE",
+    "orientation": "UNKNOWN"
+  },
+  {
+    "name": "LeBjrTristesse",
+    "id": "2341966730",
+    "group": "JOURNALISTE",
+    "orientation": "UNKNOWN"
+  },
+  {
+    "name": "ncadene",
+    "id": "17872283",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "AnasseKazib",
+    "id": "388972391",
+    "group": "JOURNALISTE",
+    "orientation": "EX_GAUCHE"
+  },
+  {
+    "name": "jmaphatie",
+    "id": "369914677",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "ZinebElRhazoui",
+    "id": "789773474114011137",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "ZohraBitan",
+    "id": "194173066",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "ivanrioufol",
+    "id": "73383656",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "RenaudCamus",
+    "id": "1044928850",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "GWGoldnadel",
+    "id": "3373762791",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "Enthoven_R",
+    "id": "1900027512",
+    "group": "JOURNALISTE",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "AlexDevecchio",
+    "id": "87156428",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "MajidOukacha",
+    "id": "3189619742",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "SJallamion",
+    "id": "3354964647",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "Sifaoui",
+    "id": "53224286",
+    "group": "JOURNALISTE",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "AgagBoudjahlat",
+    "id": "1081997378310336513",
+    "group": "JOURNALISTE",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "AlloucheNader",
+    "id": null,
+    "group": "JOURNALISTE",
+    "orientation": "UNKNOWN"
+  },
+  {
+    "name": "julienbahloul",
+    "id": "103223236",
+    "group": "JOURNALISTE",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "arnoklarsfeld",
+    "id": "92955858",
+    "group": "JOURNALISTE",
+    "orientation": "DROITE"
+  },
+  {
+    "name": "lauhaim",
+    "id": "49783304",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "ELevyCauseur",
+    "id": "2912784123",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "LeaSalame",
+    "id": "370854282",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "FrancisKalifat",
+    "id": "702855392380977152",
+    "group": "JOURNALISTE",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "frhaz",
+    "id": "111816507",
+    "group": "JOURNALISTE",
+    "orientation": "DROITE"
+  },
+  {
+    "name": "CarolineFourest",
+    "id": "49292117",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "W_Alhusseini",
+    "id": "493391629",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "alexdelvalle3",
+    "id": "1156774764",
+    "group": "JOURNALISTE",
+    "orientation": "EX_DROITE"
+  },
+  {
+    "name": "LaurentBouvet",
+    "id": "76103961",
+    "group": "PR",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "Amk84000",
+    "id": null,
+    "group": "PR",
+    "orientation": "UNKNOWN"
+  },
+  {
+    "name": "GillesClavreul",
+    "id": "58913635",
+    "group": "PR",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "valeriemaupas",
+    "id": "78725489",
+    "group": "PR",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "nicolaszeminus",
+    "id": "802292147814887425",
+    "group": "PR",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "_LICRA_",
+    "id": "194027573",
+    "group": "UNKNOWN",
+    "orientation": "CENTRE"
+  },
+  {
+    "name": "edwyplenel",
+    "id": "47399805",
+    "group": "JOURNALISTE",
+    "orientation": "GAUCHE"
+  },
+  {
+    "name": "CedricMas",
+    "id": "776021935771807744",
+    "group": "UNKNOWN",
+    "orientation": "EX_GAUCHE"
+  }
+]
